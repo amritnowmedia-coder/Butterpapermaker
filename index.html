@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Butter Paper Pattern Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">BP</div>
+        <div>
+          <h1>Butter Paper Pattern Generator</h1>
+          <p>12 x 12 inch seamless packaging artwork</p>
+        </div>
+      </div>
+
+      <section class="panel-section">
+        <div class="section-heading">
+          <h2>Upload Assets</h2>
+          <button id="clearAssetsBtn" class="ghost-btn" type="button">Clear</button>
+        </div>
+        <div id="uploadGrid" class="upload-grid"></div>
+      </section>
+
+      <section class="panel-section">
+        <h2>Generation Mode</h2>
+        <div class="segmented vertical" data-control="mode">
+          <label><input type="radio" name="mode" value="logo" checked><span>Repeat Logo</span></label>
+          <label><input type="radio" name="mode" value="pattern"><span>Random Pattern</span></label>
+          <label><input type="radio" name="mode" value="mixed"><span>Logo + Random Pattern</span></label>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2>Pattern Layout</h2>
+        <div class="segmented grid-2" data-control="layout">
+          <label><input type="radio" name="layout" value="grid" checked><span>Grid</span></label>
+          <label><input type="radio" name="layout" value="brick"><span>Brick</span></label>
+          <label><input type="radio" name="layout" value="diagonal"><span>Diagonal</span></label>
+          <label><input type="radio" name="layout" value="scatter"><span>Random Scatter</span></label>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-heading">
+          <h2>Sliders</h2>
+          <button id="randomizeBtn" class="ghost-btn" type="button">Randomize</button>
+        </div>
+        <div class="control-stack">
+          <label class="range-row">Spacing <output id="spacingValue">180</output><input id="spacing" type="range" min="40" max="520" value="180"></label>
+          <label class="range-row">Size <output id="sizeValue">100%</output><input id="size" type="range" min="15" max="220" value="100"></label>
+          <label class="range-row">Rotation <output id="rotationValue">0 deg</output><input id="rotation" type="range" min="-180" max="180" value="0"></label>
+          <label class="range-row">Randomness <output id="randomnessValue">20%</output><input id="randomness" type="range" min="0" max="100" value="20"></label>
+          <label class="range-row">Density <output id="densityValue">100%</output><input id="density" type="range" min="25" max="180" value="100"></label>
+        </div>
+        <div class="toggle-grid">
+          <label class="switch-row"><span>Random Rotation</span><input id="randomRotation" type="checkbox"><i></i></label>
+          <label class="switch-row"><span>Random Scale</span><input id="randomScale" type="checkbox"><i></i></label>
+          <label class="switch-row"><span>Seamless Tile Mode</span><input id="seamless" type="checkbox" checked><i></i></label>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2>Canvas Settings</h2>
+        <div class="info-row"><span>Canvas Size</span><strong>3600 x 3600 px</strong></div>
+        <div class="background-options">
+          <label><input type="radio" name="background" value="white" checked><span>White</span></label>
+          <label><input type="radio" name="background" value="transparent"><span>Transparent</span></label>
+          <label><input type="radio" name="background" value="custom"><span>Custom</span></label>
+          <input id="customColor" type="color" value="#F8FAFC" aria-label="Custom background color">
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-heading">
+          <h2>Project</h2>
+          <button id="resetSettingsBtn" class="ghost-btn" type="button">Reset</button>
+        </div>
+        <div class="button-grid">
+          <button id="undoBtn" class="secondary-btn" type="button">Undo</button>
+          <button id="redoBtn" class="secondary-btn" type="button">Redo</button>
+          <button id="saveProjectBtn" class="secondary-btn" type="button">Save JSON</button>
+          <label class="secondary-btn file-action">Load JSON<input id="loadProjectInput" type="file" accept="application/json"></label>
+        </div>
+      </section>
+
+      <section class="panel-section sticky-download">
+        <button id="downloadJpgBtn" class="primary-btn" type="button">Download JPEG</button>
+        <button id="downloadPngBtn" class="secondary-btn wide" type="button">Download PNG</button>
+      </section>
+    </aside>
+
+    <main class="workspace">
+      <div class="topbar">
+        <div>
+          <h2>Live Preview</h2>
+          <p id="statusText">Upload a logo or pattern element to begin.</p>
+        </div>
+        <div class="zoom-controls">
+          <button id="zoomOutBtn" type="button" title="Zoom out">-</button>
+          <span id="zoomValue">18%</span>
+          <button id="zoomInBtn" type="button" title="Zoom in">+</button>
+          <button id="resetViewBtn" type="button">Reset View</button>
+        </div>
+      </div>
+      <div id="canvasStage" class="canvas-stage">
+        <canvas id="previewCanvas" width="3600" height="3600"></canvas>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon"></div>
+          <h3>Your pattern appears here</h3>
+          <p>Drop in a transparent logo or artwork element and adjust the controls.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/generator.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/download.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
